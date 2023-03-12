@@ -4,6 +4,18 @@ var caps = ["QWERTYUIOPLKJHGFDSAZXCVBNM"];
 var spChar = [" !#$%&'()*+,-./:;<=>?@[]^_`{|}~" + '"'];
 var lower = ["qwertyuiopasdfghjklzxcvbnm"];
 var num = ["1234567890"];
+var validInput = [
+  "Yes",
+  "Y",
+  "y",
+  "yes",
+  "affirmative",
+  "No",
+  "N",
+  "n",
+  "no",
+  "Negative Ghostrider, the pattern is full",
+];
 
 // Write password to the #password input
 function writePassword() {
@@ -11,17 +23,36 @@ function writePassword() {
     "How many characters would you like your password to be?",
     "Choose a number between 8 and 128"
   );
+  while (passLen < 8 || passLen > 128) {
+    passLen = prompt(
+      "How many characters would you like your password to be?",
+      "Choose a number between 8 and 128"
+    );
+  }
   // Use prompts to generate criteria and store answers in variables
   var lowerQ = prompt("Should your password include lowercase letters?", "Yes");
+  // Uses a while loop to force user to enter valid response
+  while (lowerQ == null || !validInput.includes(lowerQ)) {
+    lowerQ = prompt("Should your password include lowercase letters?", "Yes");
+  }
 
   var capsQ = prompt("Should your password include capital letters?", "Yes");
+  while (capsQ == null || !validInput.includes(capsQ)) {
+    capsQ = prompt("Should your password include capital letters?", "Yes");
+  }
 
   var numQ = prompt("Should your password include numbers?", "Yes");
+  while (numQ == null || !validInput.includes(numQ)) {
+    numQ = prompt("Should your password include numbers?", "Yes");
+  }
 
   var spCharQ = prompt(
     "Should your password include special characters?",
     "Yes"
   );
+  while (spCharQ == null || !validInput.includes(spCharQ)) {
+    spCharQ = prompt("Should your password include special characters?", "Yes");
+  }
 
   var answers = [lowerQ, capsQ, numQ, spCharQ];
   //Placeholder value for password criteria string
@@ -61,10 +92,19 @@ function writePassword() {
 
   console.log(criteria);
 
-  // var password = generatePassword();
-  // var passwordText = document.querySelector("#password");
+  function generatePassword(passLen) {
+    let result = "";
+    const critLen = criteria.length;
+    for (i = 0; i < passLen; i++) {
+      result += criteria.charAt(Math.floor(Math.random() * critLen));
+    }
 
-  // passwordText.value = password;
+    return result;
+  }
+  var password = generatePassword(passLen);
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
