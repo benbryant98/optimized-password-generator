@@ -24,12 +24,26 @@ function writePassword() {
   );
 
   var answers = [lowerQ, capsQ, numQ, spCharQ];
+  //Placeholder value for password criteria string
+  var criteria = "";
 
-  //Creates criteria value and defines it as lowercase or empty
+  //Iterates through prompts adding criteria based on prompt responses
   for (i = 0; i < answers.length; i++) {
     if (["Yes", "Y", "y", "yes", "affirmative"].includes(answers[i])) {
-      answers[i] = true;
       console.log(answers[i]);
+      switch (i) {
+        case 0:
+          criteria += lower;
+          break;
+        case 1:
+          criteria += caps;
+          break;
+        case 2:
+          criteria += num;
+          break;
+        case 3:
+          criteria += spChar;
+      }
     } else if (
       [
         "No",
@@ -39,12 +53,13 @@ function writePassword() {
         "Negative Ghostrider, the pattern is full",
       ].includes(answers[i])
     ) {
-      answers[i] = false;
       console.log(answers[i]);
     } else {
       console.log("Error: Please enter a valid yes/no answer.");
     }
   }
+
+  console.log(criteria);
 
   // var password = generatePassword();
   // var passwordText = document.querySelector("#password");
