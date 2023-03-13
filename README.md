@@ -4,7 +4,7 @@ This website is designed to generate a randomized password based on security cri
 
 # Screenshot
 
-![Deployed Website](C:\Users\bbbgu\bootcamp\repos\optimized-password-generator\images\PasswordSite.PNG)
+![Deployed Website](images\PasswordSite.PNG)
 
 # Deployed Application
 
