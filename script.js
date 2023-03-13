@@ -55,10 +55,10 @@ function writePassword() {
   }
 
   var answers = [lowerQ, capsQ, numQ, spCharQ];
-  //Placeholder value for password criteria string
+  // Placeholder value for password criteria string
   var criteria = "";
 
-  //Iterates through prompts adding criteria based on prompt responses
+  // Iterates through prompts adding criteria based on prompt responses
   for (i = 0; i < answers.length; i++) {
     if (["Yes", "Y", "y", "yes", "affirmative"].includes(answers[i])) {
       console.log(answers[i]);
@@ -90,13 +90,12 @@ function writePassword() {
     }
   }
 
-  console.log(criteria);
+  console.log("Possible characters: " + criteria);
 
   function generatePassword(passLen) {
     let result = "";
-    const critLen = criteria.length;
     for (i = 0; i < passLen; i++) {
-      result += criteria.charAt(Math.floor(Math.random() * critLen));
+      result += criteria.charAt(Math.floor(Math.random() * criteria.length));
     }
 
     return result;
